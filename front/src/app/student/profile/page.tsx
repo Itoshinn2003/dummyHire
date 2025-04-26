@@ -19,15 +19,22 @@ export default function Profile() {
         </div>
 
         <div className="col-md-9">
-          <div className="mb-3">
-            <h5>プロフィール文</h5>
+          <div className="mb-5">
+            <h5>自己紹介</h5>
+            <p>
+              情報系の学生で、現在はWebアプリケーション開発を学んでいます。
+              チーム開発やUI/UXに興味があります。
+            </p>
+          </div>
+          <div className="mb-5">
+            <h5>インターンで経験したいこと</h5>
             <p>
               情報系の学生で、現在はWebアプリケーション開発を学んでいます。
               チーム開発やUI/UXに興味があります。
             </p>
           </div>
 
-          <div className="mb-3">
+          <div className="mb-5">
             <h5>希望職種</h5>
             <span className="badge bg-primary me-2">エンジニア</span>
             <span className="badge bg-secondary me-2">デザイナー</span>

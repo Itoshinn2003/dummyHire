@@ -23,17 +23,12 @@ export default function StudentProfile() {
           将来的にはフロントエンドエンジニアとして活躍したいと考えています。
         </p>
       </div>
-
-      {/* スキル */}
       <div className="mb-4">
-        <h5>スキル</h5>
-        <div className="d-flex flex-wrap gap-2">
-          <span className="badge bg-secondary">HTML</span>
-          <span className="badge bg-secondary">CSS</span>
-          <span className="badge bg-secondary">JavaScript</span>
-          <span className="badge bg-secondary">React</span>
-          <span className="badge bg-secondary">Figma</span>
-        </div>
+        <h5>インターンで経験したいこと</h5>
+        <p>
+          現在、大学で情報工学を学んでいます。ReactやNode.jsを用いたWebアプリ開発に興味があり、
+          将来的にはフロントエンドエンジニアとして活躍したいと考えています。
+        </p>
       </div>
 
       {/* 希望職種・居住地 */}
@@ -52,6 +47,10 @@ export default function StudentProfile() {
       {/* ポートフォリオ */}
       <div className="mb-4">
         <h5>ポートフォリオ</h5>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+          https://example.com
+        </a>
+        <h5>Githubアカウント</h5>
         <a href="https://example.com" target="_blank" rel="noopener noreferrer">
           https://example.com
         </a>

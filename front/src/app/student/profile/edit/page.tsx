@@ -55,7 +55,16 @@ export default function ProfileEdit() {
 
         <div className="col-md-9">
           <div className="mb-3">
-            <h5>プロフィール文</h5>
+            <h5>自己紹介</h5>
+            <textarea
+              className="form-control"
+              rows="5"
+              value={profileText}
+              onChange={(e) => setProfileText(e.target.value)}
+            ></textarea>
+          </div>
+          <div className="mb-3">
+            <h5>インターンで経験したいこと</h5>
             <textarea
               className="form-control"
               rows="5"
@@ -104,6 +113,19 @@ export default function ProfileEdit() {
                 />
                 <label className="form-check-label" htmlFor="marketing">
                   マーケティング
+                </label>
+              </div>
+              <div className="form-check form-check-inline">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="marketing"
+                  name="marketing"
+                  checked={jobPreference.marketing}
+                  onChange={handleJobChange}
+                />
+                <label className="form-check-label" htmlFor="marketing">
+                  営業
                 </label>
               </div>
             </div>

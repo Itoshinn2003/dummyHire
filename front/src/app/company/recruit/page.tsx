@@ -19,7 +19,7 @@ export default function CreateIntern() {
             placeholder="例：フロントエンドエンジニア募集"
           />
         </div>
-
+        <p>職種</p>
         {/* 業務内容 */}
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
@@ -30,6 +30,18 @@ export default function CreateIntern() {
             id="description"
             rows="4"
             placeholder="業務の内容を詳しく記入してください"
+          ></textarea>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="process" className="form-label">
+            応募条件
+          </label>
+          <textarea
+            className="form-control"
+            id="process"
+            rows="3"
+            placeholder="例：書類選考 → 面接（1回） → 合否連絡"
           ></textarea>
         </div>
 

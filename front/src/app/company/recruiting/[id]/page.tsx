@@ -1,6 +1,11 @@
 export default function Recruiting() {
   return (
     <div className="container my-5">
+      <div className="d-flex justify-content-end mb-3">
+        <a href="#" className="btn btn-outline-secondary">
+          募集を停止する
+        </a>
+      </div>
       <div className="mb-4">
         <h2>フロントエンドエンジニア インターン募集</h2>
         <p className="text-muted">DummyCompany株式会社</p>
@@ -14,7 +19,7 @@ export default function Recruiting() {
           <strong>職種：</strong> エンジニア
         </div>
         <div className="col-md-4 mb-2">
-          <strong>時給：</strong> 1200円~
+          <strong>時給：</strong> 1200~
         </div>
       </div>
 
@@ -34,14 +39,9 @@ export default function Recruiting() {
           <li>チーム開発に興味のある方</li>
         </ul>
       </div>
-
       <div className="mb-4">
         <h5>選考フロー</h5>
         <p>一回の面接</p>
-      </div>
-
-      <div className="text-center">
-        <button className="btn btn-primary btn-lg px-5">応募する</button>
       </div>
     </div>
   );

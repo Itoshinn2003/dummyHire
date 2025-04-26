@@ -39,24 +39,9 @@ export default function Company() {
       </div>
 
       <div className="mb-4">
-        <h5>リンク</h5>
-        <ul className="list-unstyled">
-          <li>
-            <a href="https://dummycompany.com" target="_blank">
-              公式サイト
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/dummycompany" target="_blank">
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/dummycompany" target="_blank">
-              Twitter
-            </a>
-          </li>
-        </ul>
+        <a href="https://dummycompany.com" target="_blank">
+          公式サイト
+        </a>
       </div>
 
       <div className="mb-5">
