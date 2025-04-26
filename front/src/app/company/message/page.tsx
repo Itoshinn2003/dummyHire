@@ -1,4 +1,5 @@
-export default function MessageToCompany() {
+// 学生とのメッセージする場所
+export default function MessageToStudent() {
   return (
     <div className="container my-5">
       <h2 className="mb-4">メッセージ一覧</h2>
