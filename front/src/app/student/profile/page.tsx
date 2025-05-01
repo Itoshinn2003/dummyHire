@@ -1,3 +1,4 @@
+import Image from 'next/image';
 export default function Profile() {
   return (
     <div className="container my-5">
@@ -8,11 +9,12 @@ export default function Profile() {
 
       <div className="row g-4">
         <div className="col-md-3 text-center">
-          <img
-            src="https://via.placeholder.com/150"
-            alt="プロフィール写真"
-            className="rounded-circle img-fluid mb-3"
-            style={{ width: '150px', height: '150px', objectFit: 'cover' }}
+          <Image
+            src="https://via.placeholder.com/120"
+            alt="企業ロゴ"
+            className="rounded-circle mb-3"
+            width={120} // 画像の幅を指定
+            height={120} // 画像の高さを指定
           />
           <h4 className="mb-1">山田 太郎</h4>
           <p className="text-muted">東京大学 工学部 3年</p>

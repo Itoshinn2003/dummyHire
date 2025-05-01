@@ -1,4 +1,4 @@
-// 学生検索できてスカウトできるページ
+import Image from 'next/image';
 export default function Recruitments() {
   return (
     <div className="container my-5">
@@ -40,11 +40,12 @@ export default function Recruitments() {
 
       <div className="row g-4">
         {Array.from({ length: 5 }).map((_, index) => (
-          <div className="card my-5 col-4">
-            <img
+          <div key={index} className="card my-5 col-4">
+            <Image
               src="https://via.placeholder.com/286x180"
-              className="card-img-top"
               alt="プロフィール画像"
+              className="card-img-top"
+              layout="intrinsic" // アスペクト比に基づいてサイズを自動的に調整
             />
             <div className="card-body text-center">
               <h5 className="text-start">

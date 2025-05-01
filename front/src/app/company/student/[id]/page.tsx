@@ -1,12 +1,12 @@
 // 学生の個々のプロフィール見るページ
 import React from 'react';
-
+import Image from 'next/image';
 export default function StudentProfile() {
   return (
     <div className="container my-5" style={{ maxWidth: '700px' }}>
       {/* ヘッダー */}
       <div className="text-center mb-4">
-        <img
+        <Image
           src="https://via.placeholder.com/100"
           alt="プロフィール画像"
           className="rounded-circle mb-3"

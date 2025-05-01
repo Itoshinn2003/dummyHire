@@ -28,7 +28,7 @@ export default function CreateIntern() {
           <textarea
             className="form-control"
             id="description"
-            rows="4"
+            rows={4}
             placeholder="業務の内容を詳しく記入してください"
           ></textarea>
         </div>
@@ -40,7 +40,7 @@ export default function CreateIntern() {
           <textarea
             className="form-control"
             id="process"
-            rows="3"
+            rows={3}
             placeholder="例：書類選考 → 面接（1回） → 合否連絡"
           ></textarea>
         </div>
@@ -53,7 +53,7 @@ export default function CreateIntern() {
           <textarea
             className="form-control"
             id="process"
-            rows="3"
+            rows={3}
             placeholder="例：書類選考 → 面接（1回） → 合否連絡"
           ></textarea>
         </div>

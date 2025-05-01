@@ -1,4 +1,4 @@
-// 会社のプロフィール作るページ
+import Image from 'next/image';
 export default function Company() {
   return (
     <div className="container my-5">
@@ -10,7 +10,11 @@ export default function Company() {
       </div>
 
       <div className="text-center mb-5">
-        <img src="https://via.placeholder.com/120" alt="企業ロゴ" className="rounded-circle mb-3" />
+        <Image
+          src="https://via.placeholder.com/120"
+          alt="企業ロゴ"
+          className="rounded-circle mb-3"
+        />
         <h2>DummyCompany 株式会社</h2>
         <p className="text-muted">Web・IT業界 / 東京都渋谷区</p>
       </div>

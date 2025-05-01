@@ -149,6 +149,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.13)
+    rack-cors (2.0.2)
+      rack (>= 2.0.0)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -204,18 +206,18 @@ GEM
 
 PLATFORMS
   aarch64-linux
-  aarch64-linux-gnu
+  aarch64-linux
   aarch64-linux-musl
   arm-linux
-  arm-linux-gnu
+  arm-linux
   arm-linux-musl
   arm64-darwin
   x86-linux
-  x86-linux-gnu
+  x86-linux
   x86-linux-musl
   x86_64-darwin
   x86_64-linux
-  x86_64-linux-gnu
+  x86_64-linux
   x86_64-linux-musl
 
 DEPENDENCIES
@@ -223,6 +225,7 @@ DEPENDENCIES
   debug
   mysql2 (>= 0.5.0)
   puma (>= 5.0)
+  rack-cors
   rails (~> 7.1.5, >= 7.1.5.1)
   tzinfo-data
 
