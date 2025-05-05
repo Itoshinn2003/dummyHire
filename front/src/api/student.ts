@@ -1,9 +1,8 @@
 import axios from 'axios';
-export const create = async (params: any) => {
+export const create = async (params: studentParams) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/student/create', { params });
-    console.log('A');
+    const response = await axios.post('http://localhost:3001/api/student/create', params);
   } catch (error: any) {
-    console.log(error);
+    throw new Error(error.response.data.error);
   }
 };

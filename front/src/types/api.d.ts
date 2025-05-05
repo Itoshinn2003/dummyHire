@@ -1,5 +1,5 @@
 type studentParams = {
-  name: String;
+  userName: String;
   userId: String;
   password: String;
   universityName: String;

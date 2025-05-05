@@ -2,12 +2,16 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { create } from '@/api/student';
+import { useRouter } from 'next/navigation';
 export default function RegisterForm() {
+  const router = useRouter();
+  const [error, setError] = useState<string>('');
   const defaultValues = {
-    name: '',
+    userName: '',
     userId: '',
     password: '',
     universityName: '',
+    department: '',
     grade: '',
     desiredJob: '',
   };
@@ -19,26 +23,37 @@ export default function RegisterForm() {
     defaultValues,
   });
 
+  const onSubmit = async (data: studentParams) => {
+    try {
+      await create(data);
+      setError('');
+      router.push('/signin/student');
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
   return (
     <div className="container mt-5">
       <h2 className="mb-4">新規登録</h2>
-      <form onSubmit={handleSubmit(create)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             名前
           </label>
-          <p className="text-danger">{errors.name?.message}</p>
+          <p className="text-danger">{errors.userName?.message}</p>
           <input
             type="text"
             className="form-control"
             id="name"
-            {...register('name', {
+            {...register('userName', {
               required: '名前は必須入力です',
             })}
           />
         </div>
 
         <div className="mb-3">
+          <p className="text-danger">{error}</p>
           <label htmlFor="user-id" className="form-label">
             ユーザーID
           </label>
@@ -63,6 +78,14 @@ export default function RegisterForm() {
             id="password"
             {...register('password', {
               required: 'パスワードは必須入力です',
+              maxLength: {
+                value: 20,
+                message: '最大20文字です',
+              },
+              minLength: {
+                value: 8,
+                message: '8文字以上です',
+              },
             })}
           />
         </div>
@@ -77,6 +100,21 @@ export default function RegisterForm() {
             className="form-control"
             id="university-name"
             {...register('universityName', {
+              required: '学校名は必須入力です',
+            })}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="department" className="form-label">
+            学部
+          </label>
+          <p className="text-danger">{errors.universityName?.message}</p>
+          <input
+            type="text"
+            className="form-control"
+            id="department"
+            {...register('department', {
               required: '学校名は必須入力です',
             })}
           />

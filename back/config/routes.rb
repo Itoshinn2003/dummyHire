@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :api do
-    post "/api/student/create", to: "student#create"
+    post "/student/create", to: "students#create"
   end
 
   # Defines the root path route ("/")

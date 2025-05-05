@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_01_075018) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_02_235236) do
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "user_name"
     t.string "university_name"
@@ -23,6 +23,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_01_075018) do
     t.string "portfolio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_id"
+    t.string "password"
   end
 
 end
