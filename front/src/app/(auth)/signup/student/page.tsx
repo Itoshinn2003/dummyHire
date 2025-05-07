@@ -73,7 +73,7 @@ export default function RegisterForm() {
           </label>
           <p className="text-danger">{errors.password?.message}</p>
           <input
-            type="text"
+            type="password"
             className="form-control"
             id="password"
             {...register('password', {

@@ -17,7 +17,7 @@ services:
     volumes:
       - ./back:/back
     ports:
-      - '3001:3001'
+      - '3001:3000'
     depends_on:
       - db
     environment:

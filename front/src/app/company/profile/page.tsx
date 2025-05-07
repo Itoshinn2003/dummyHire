@@ -1,8 +1,8 @@
 import Image from 'next/image';
+import logo from '@/images/hope.jpeg';
 export default function Company() {
   return (
     <div className="container my-5">
-      {/* 編集ボタンを右上に表示 */}
       <div className="d-flex justify-content-end mb-3">
         <a href="#" className="btn btn-outline-secondary">
           編集する
@@ -10,11 +10,7 @@ export default function Company() {
       </div>
 
       <div className="text-center mb-5">
-        <Image
-          src="https://via.placeholder.com/120"
-          alt="企業ロゴ"
-          className="rounded-circle mb-3"
-        />
+        <Image src={logo} alt="企業ロゴ" className="rounded-circle mb-3" />
         <h2>DummyCompany 株式会社</h2>
         <p className="text-muted">Web・IT業界 / 東京都渋谷区</p>
       </div>

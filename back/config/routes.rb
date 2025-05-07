@@ -7,6 +7,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     post "/student/create", to: "students#create"
+    post "/student/signin", to: "students#signin"
+    post "/student/profile", to: "students#profile"
+
+    
+    post "/company/signin", to: "companies#signin"
   end
 
   # Defines the root path route ("/")
