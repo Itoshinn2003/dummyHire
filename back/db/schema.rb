@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_05_120350) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_10_050708) do
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "profile_text"
@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_05_120350) do
     t.datetime "updated_at", null: false
     t.string "user_id"
     t.string "password"
+    t.string "region"
   end
 
 end

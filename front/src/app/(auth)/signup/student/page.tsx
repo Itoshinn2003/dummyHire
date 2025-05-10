@@ -13,6 +13,7 @@ export default function RegisterForm() {
     universityName: '',
     department: '',
     grade: '',
+    region: '',
     desiredJob: '',
   };
   const {
@@ -137,6 +138,29 @@ export default function RegisterForm() {
             <option value="4">4年</option>
             <option value="5">5年</option>
             <option value="6">6年</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="region" className="form-label">
+            住んでいる場所
+          </label>
+          <p className="text-danger">{errors.grade?.message}</p>
+          <select
+            className="form-select"
+            id="region"
+            {...register('region', { required: '住んでいる場所は必須です' })}
+          >
+            <option value="">選択してください</option>
+            <option value="hokkaido">北海道</option>
+            <option value="tohoku">東北地方</option>
+            <option value="kanto">関東地方</option>
+            <option value="chubu">中部地方</option>
+            <option value="kansai">関西地方</option>
+            <option value="chugoku">中国地方</option>
+            <option value="shikoku">四国地方</option>
+            <option value="kyushu">九州地方</option>
             <option value="other">その他</option>
           </select>
         </div>

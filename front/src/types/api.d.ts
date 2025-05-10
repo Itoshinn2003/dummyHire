@@ -4,5 +4,6 @@ type studentParams = {
   password: String;
   universityName: String;
   grade: String;
+  region: string;
   desiredJob: String;
 };

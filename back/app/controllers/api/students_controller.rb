@@ -25,6 +25,9 @@ class Api::StudentsController < ApplicationController
 
     def profile 
         student = Student.find(params[:id])
+        p 'Ahfhdkjghkdghksdh'
+        p student
+        p student.as_json
         render json: { student: student.as_json}
     end
 end

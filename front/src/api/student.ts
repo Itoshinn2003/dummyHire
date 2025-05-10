@@ -21,8 +21,3 @@ export const signIn = async (params: { userId: string; password: string }) => {
     throw new Error(error.response.data.error);
   }
 };
-
-export const profile = async (params: { id: string }) => {
-  const response = await axios.post('http://localhost:3001/api/student/profile', params);
-  const data = response.data;
-};
