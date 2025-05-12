@@ -1,5 +1,4 @@
 class Api::StudentsController < ApplicationController
-    include ActionController::Cookies
     def create
         @student = Student.new(user_name: params[:userName], university_name: params[:universityName], department: params[:department], password: params[:password], grade: params[:grade], desired_job: params[:desiredJob], user_id: params[:userId])
         if @student.save

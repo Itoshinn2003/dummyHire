@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     post "/company/profile", to: "companies#profile"
     post "/company/signin", to: "companies#signin"
     post "/company/update", to: "companies#update"
+
+
+    post "/intern/create", to: "interns#create"
+    post "/intern/show", to: "interns#show"
   end
 
   # Defines the root path route ("/")

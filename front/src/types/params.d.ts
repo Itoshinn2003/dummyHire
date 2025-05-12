@@ -32,3 +32,14 @@ type CompanyEditFormParams = {
   employee: number | undefined;
   officialSite: string | undefined;
 };
+
+type InternParams = {
+  companyId: string | undefined;
+  title: string | undefined;
+  job: string | undefined;
+  internText: string | undefined;
+  terms: string | undefined;
+  selection: string | undefined;
+  salary: number | undefined;
+  location: string | undefined;
+};

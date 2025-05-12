@@ -15,7 +15,6 @@ export default async function Company() {
         },
         body: JSON.stringify({ id: companyId }),
       });
-
       const data = await response.json();
       company = data.company;
       console.log(company);
@@ -65,19 +64,50 @@ export default async function Company() {
         <div className="mb-5">
           <h5>現在募集中のインターン</h5>
           <div className="row g-4">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {company?.interns.map((intern, index) => (
               <div className="col-12" key={index}>
                 <div className="card shadow-sm">
                   <div className="card-body d-flex justify-content-between align-items-center flex-wrap">
                     <div>
-                      <h5 className="card-title mb-1">インターン募集 {index + 1}</h5>
-                      <p className="card-text mb-1">企業名：DummyCompany {index + 1}</p>
-                      <p className="card-text mb-1">勤務地：東京都</p>
-                      <p className="card-text text-muted mb-0">期間：1ヶ月〜</p>
+                      <h5 className="card-title mb-1">{intern.title}</h5>
+                      <p className="card-text mb-1">
+                        職種:
+                        {intern.job == 'engineer'
+                          ? 'エンジニア'
+                          : intern.job == 'designer'
+                            ? 'デザイナー'
+                            : intern.job == 'sales'
+                              ? '営業'
+                              : 'マーケティング'}
+                      </p>
+                      <p className="card-text mb-1">
+                        勤務地：
+                        {intern.location === 'hokkaido'
+                          ? '北海道'
+                          : intern.location === 'tohoku'
+                            ? '東北地方'
+                            : intern.location === 'kanto'
+                              ? '関東地方'
+                              : intern.location === 'chubu'
+                                ? '中部地方'
+                                : intern.location === 'kansai'
+                                  ? '関西地方'
+                                  : intern.location === 'chugoku'
+                                    ? '中国地方'
+                                    : intern.location === 'shikoku'
+                                      ? '四国地方'
+                                      : intern.location === 'kyushu'
+                                        ? '九州地方'
+                                        : '未設定'}
+                      </p>
+                      <p className="card-text text-muted mb-0">時給：{intern.salary}円</p>
                     </div>
-                    <a href="#" className="btn btn-primary mt-3 mt-md-0">
+                    <Link
+                      href={`/company/recruiting/${intern.id}`}
+                      className="btn btn-primary mt-3 mt-md-0"
+                    >
                       詳細を見る
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_10_060409) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_12_092506) do
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "profile_text"
@@ -22,6 +22,20 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_10_060409) do
     t.datetime "updated_at", null: false
     t.string "password"
     t.string "mail"
+  end
+
+  create_table "interns", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.string "title"
+    t.string "job"
+    t.string "intern_text"
+    t.string "terms"
+    t.string "selection"
+    t.integer "salary"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_interns_on_company_id"
   end
 
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -41,4 +55,5 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_10_060409) do
     t.string "region"
   end
 
+  add_foreign_key "interns", "companies"
 end

@@ -19,4 +19,24 @@ type CompanyApiResponse = {
   name: string;
   official_site: string;
   profile_text: string;
+  interns: Intern[];
+};
+
+type Intern = {
+  id: number;
+  title: string;
+  salary: string;
+  job: string;
+  location: string;
+};
+
+type InternApiResponse = {
+  company_id: string;
+  title: string;
+  job: string;
+  intern_text: string;
+  terms: string;
+  selection: string;
+  salary: number;
+  location: string;
 };

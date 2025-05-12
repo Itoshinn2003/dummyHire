@@ -14,8 +14,12 @@ class Api::CompaniesController < ApplicationController
     end
 
     def profile 
-        company = Company.find(params[:id])
-        company = company.as_json(only: [:name, :mail, :profile_text, :location, :established, :employee, :official_site])
+        company = Company.includes(:interns).find(params[:id])
+        company = company.as_json(only: [:name, :mail, :profile_text, :location, :established, :employee, :official_site],
+        include: {
+            interns: {
+              only: [:id, :title, :salary, :location, :job]
+            }})
         render json: { company: company}
     end
 
