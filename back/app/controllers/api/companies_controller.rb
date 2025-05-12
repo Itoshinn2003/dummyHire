@@ -12,4 +12,19 @@ class Api::CompaniesController < ApplicationController
             end
         end
     end
+
+    def profile 
+        company = Company.find(params[:id])
+        company = company.as_json(only: [:name, :mail, :profile_text, :location, :established, :employee, :official_site])
+        render json: { company: company}
+    end
+
+    def update
+        company = Company.find(params[:id])
+        if company.update(id: params[:id], name: params[:name], mail: params[:mail], location: params[:location], profile_text: params[:profileText], established: params[:established], employee: params[:employee], official_site: params[:officialSite])
+            render json: { company: company.as_json }, status: :ok
+          else
+            render json: { errors: company.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
 end

@@ -1,4 +1,3 @@
-// 募集を作るページ
 import React from 'react';
 
 export default function CreateIntern() {
@@ -7,7 +6,6 @@ export default function CreateIntern() {
       <h2 className="mb-4">インターン募集作成</h2>
 
       <form>
-        {/* 募集タイトル */}
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             募集タイトル
@@ -20,7 +18,6 @@ export default function CreateIntern() {
           />
         </div>
         <p>職種</p>
-        {/* 業務内容 */}
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             業務内容
@@ -58,7 +55,6 @@ export default function CreateIntern() {
           ></textarea>
         </div>
 
-        {/* 時給 */}
         <div className="mb-3">
           <label htmlFor="wage" className="form-label">
             時給
@@ -66,7 +62,6 @@ export default function CreateIntern() {
           <input type="number" className="form-control" id="wage" placeholder="例：1200" />
         </div>
 
-        {/* 勤務地 */}
         <div className="mb-3">
           <label htmlFor="location" className="form-label">
             勤務地
@@ -79,7 +74,6 @@ export default function CreateIntern() {
           />
         </div>
 
-        {/* ボタン */}
         <div className="d-grid">
           <button type="submit" className="btn btn-primary">
             募集を作成する

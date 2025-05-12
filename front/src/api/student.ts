@@ -21,3 +21,12 @@ export const signIn = async (params: { userId: string; password: string }) => {
     throw new Error(error.response.data.error);
   }
 };
+
+export const update = async (params: StudentEditFormParams) => {
+  try {
+    const response = await axios.post('http://localhost:3001/api/student/update', params);
+    const data = response.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
