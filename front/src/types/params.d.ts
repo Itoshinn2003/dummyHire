@@ -43,3 +43,9 @@ type InternParams = {
   salary: number | undefined;
   location: string | undefined;
 };
+
+type InternSearchParams = {
+  location_eq: string;
+  job_eq: string;
+  salary_gteq: number;
+};

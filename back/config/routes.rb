@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "/company/update", to: "companies#update"
 
 
+    get "/interns", to: 'interns#index'
     post "/intern/create", to: "interns#create"
     post "/intern/show", to: "interns#show"
     delete "/interns/:id", to: "interns#destroy"

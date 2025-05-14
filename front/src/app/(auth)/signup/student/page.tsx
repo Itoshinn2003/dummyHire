@@ -146,7 +146,7 @@ export default function RegisterForm() {
           <label htmlFor="region" className="form-label">
             住んでいる場所
           </label>
-          <p className="text-danger">{errors.grade?.message}</p>
+          <p className="text-danger">{errors.region?.message}</p>
           <select
             className="form-select"
             id="region"

@@ -129,7 +129,11 @@ export default function CreateIntern() {
             className="form-control"
             id="salary"
             {...register('salary', {
-              required: '時給は必須入力です',
+              valueAsNumber: true,
+              min: {
+                value: 0,
+                message: '0以上の値を入力してください',
+              },
             })}
           />
           円

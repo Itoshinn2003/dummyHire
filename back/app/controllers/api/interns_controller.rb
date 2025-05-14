@@ -1,5 +1,19 @@
 class Api::InternsController < ApplicationController
 
+
+    def index
+        interns = Intern.ransack(params[:q]).result()
+
+        interns = interns.as_json(only: [:id, :title, :location, :salary, :company_id],
+        include: {
+            company: {
+              only: [:name]
+            }})
+        render json: { interns: interns }
+    end
+
+
+
     def create
         intern = Intern.new(company_id: params[:companyId], title: params[:title], job: params[:job], intern_text: params[:internText], terms: params[:terms], selection: params[:selection], salary: params[:salary], location: params[:location])
         if intern.save

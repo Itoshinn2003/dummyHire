@@ -40,3 +40,14 @@ type InternApiResponse = {
   salary: number;
   location: string;
 };
+
+type InternSearchApiResponse = {
+  id: number;
+  title: string;
+  location: string;
+  salary: number;
+  company_id: number;
+  company: {
+    name: string;
+  };
+};
