@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import Cookies from 'js-cookie';
 import { useForm } from 'react-hook-form';
 import { create } from '@/api/intern';
-
+import { useRouter } from 'next/navigation';
 export default function CreateIntern() {
+  const router = useRouter();
   const [error, setError] = useState<string>('');
   const defaultValues = {
     companyId: Cookies.get('company_id'),
@@ -29,6 +30,7 @@ export default function CreateIntern() {
     try {
       await create(data);
       setError('');
+      router.push('/company/profile');
     } catch (err: any) {
       setError(err.message);
     }

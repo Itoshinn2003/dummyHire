@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post "/student/signin", to: "students#signin"
     post "/student/profile", to: "students#profile"
     post "/student/update", to: "students#update"
+    
 
 
     post "/company/profile", to: "companies#profile"
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
 
     post "/intern/create", to: "interns#create"
     post "/intern/show", to: "interns#show"
+    delete "/interns/:id", to: "interns#destroy"
   end
 
   # Defines the root path route ("/")

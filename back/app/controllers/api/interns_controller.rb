@@ -17,7 +17,7 @@ class Api::InternsController < ApplicationController
     end
 
 
-    def delete
+    def destroy
         intern = Intern.find(params[:id])
         intern.destroy
     end
