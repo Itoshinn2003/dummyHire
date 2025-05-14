@@ -22,7 +22,6 @@ export default function constInternSearchForm(props: any) {
     };
     try {
       let data = await index(searchParams);
-      console.log(data);
       props.handleValueChange(data);
     } catch (err: any) {
       setError(err.message);

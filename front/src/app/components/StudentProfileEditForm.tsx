@@ -10,7 +10,6 @@ export default function StudentProfileEditForm({
   student: StudentApiResponse | null;
 }) {
   const router = useRouter();
-  console.log(student);
   const [error, setError] = useState<string>('');
   const defaultValues = {
     id: Cookies.get('student_id'),

@@ -8,7 +8,7 @@ export default async function Profile() {
   const studentId = cookieStore.get('student_id')?.value;
   if (studentId !== undefined) {
     try {
-      const response = await fetch('http://api:3000/api/student/profile', {
+      const response = await fetch('http://api:3000/api/students/profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -10,7 +10,6 @@ export default function StudentProfileEditForm({
   company: CompanyApiResponse | null;
 }) {
   const router = useRouter();
-  console.log(company);
   const [error, setError] = useState<string>('');
   const defaultValues = {
     id: Cookies.get('company_id'),

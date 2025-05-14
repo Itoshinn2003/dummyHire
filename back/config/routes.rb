@@ -6,22 +6,24 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :api do
-    post "/student/create", to: "students#create"
-    post "/student/signin", to: "students#signin"
-    post "/student/profile", to: "students#profile"
-    post "/student/update", to: "students#update"
-    
+
+    resources :students, only: [:create, :update] do
+      collection do
+        post :signin
+        post :profile
+      end
+    end
 
 
-    post "/company/profile", to: "companies#profile"
-    post "/company/signin", to: "companies#signin"
-    post "/company/update", to: "companies#update"
-
-
-    get "/interns", to: 'interns#index'
-    post "/intern/create", to: "interns#create"
-    post "/intern/show", to: "interns#show"
-    delete "/interns/:id", to: "interns#destroy"
+    resources :companies, only: [:show, :update] do
+      collection do
+        post :profile
+        post :signin
+      end
+    end
+  
+    resources :interns, only: [:index, :show, :create, :destroy] do
+    end
   end
 
   # Defines the root path route ("/")

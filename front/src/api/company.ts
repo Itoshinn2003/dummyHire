@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 
 export const signIn = async (params: { userId: string; password: string }) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/company/signin', params);
+    const response = await axios.post('http://localhost:3001/api/companies/signin', params);
     const data = response.data;
     Cookies.set('company_id', response.data.id, {
       expires: 7,
@@ -17,7 +17,7 @@ export const signIn = async (params: { userId: string; password: string }) => {
 
 export const update = async (params: CompanyEditFormParams) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/company/update', params);
+    const response = await axios.patch(`http://localhost:3001/api/companies/${params.id}`, params);
     const data = response.data;
   } catch (error: any) {
     throw new Error(error.response.data.error);

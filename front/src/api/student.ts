@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 export const create = async (params: studentParams) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/student/create', params);
+    const response = await axios.post('http://localhost:3001/api/students', params);
   } catch (error: any) {
     throw new Error(error.response.data.error);
   }
@@ -10,7 +10,7 @@ export const create = async (params: studentParams) => {
 
 export const signIn = async (params: { userId: string; password: string }) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/student/signin', params);
+    const response = await axios.post('http://localhost:3001/api/students/signin', params);
     const data = response.data;
     Cookies.set('student_id', response.data.id, {
       expires: 7,
@@ -24,7 +24,7 @@ export const signIn = async (params: { userId: string; password: string }) => {
 
 export const update = async (params: StudentEditFormParams) => {
   try {
-    const response = await axios.post('http://localhost:3001/api/student/update', params);
+    const response = await axios.patch(`http://localhost:3001/api/students/${params.id}`, params);
     const data = response.data;
   } catch (error: any) {
     throw new Error(error.response.data.error);

@@ -7,12 +7,11 @@ export default async function Recruiting({ params }: { params: { id: string } })
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
   try {
-    const response = await fetch('http://api:3000/api/intern/show', {
-      method: 'POST',
+    const response = await fetch(`http://api:3000/api/interns/${internId}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id: internId }),
     });
     const data = await response.json();
     intern = data.intern;

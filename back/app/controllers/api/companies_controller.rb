@@ -1,5 +1,14 @@
 class Api::CompaniesController < ApplicationController
 
+    def show 
+        company = Company.includes(:interns).find(params[:id])
+        company = company.as_json(only: [:name, :mail, :profile_text, :location, :established, :employee, :official_site],
+            include: {
+                interns: {
+                   only: [:id, :title, :salary, :location, :job]
+            }})
+        render json: {company: company}, status: :ok
+    end
     def signin
         company = Company.find_by(mail: params[:mail], password: params[:password])
         unless company.nil?

@@ -8,7 +8,7 @@ export default async function Company() {
   const companyId = cookieStore.get('company_id')?.value;
   if (companyId !== undefined) {
     try {
-      const response = await fetch('http://api:3000/api/company/profile', {
+      const response = await fetch('http://api:3000/api/companies/profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -17,7 +17,6 @@ export default async function Company() {
       });
       const data = await response.json();
       company = data.company;
-      console.log(company);
     } catch (error) {
       console.error('Request failed', error);
     }

@@ -7,7 +7,6 @@ export default function Recruitments() {
   const [interns, setInterns] = useState<InternSearchApiResponse[]>([]);
   const handleValueChange = (interns: InternSearchApiResponse[]) => {
     setInterns(interns);
-    console.log(interns);
   };
   return (
     <>
