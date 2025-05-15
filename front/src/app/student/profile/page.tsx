@@ -43,25 +43,7 @@ export default async function Profile() {
             <p className="text-muted">
               {student?.university_name}/{student?.department}/{student?.grade}年
             </p>
-            <p>
-              {student?.region === 'hokkaido'
-                ? '北海道'
-                : student?.region === 'tohoku'
-                  ? '東北地方'
-                  : student?.region === 'kanto'
-                    ? '関東地方'
-                    : student?.region === 'chubu'
-                      ? '中部地方'
-                      : student?.region === 'kansai'
-                        ? '関西地方'
-                        : student?.region === 'chugoku'
-                          ? '中国地方'
-                          : student?.region === 'shikoku'
-                            ? '四国地方'
-                            : student?.region === 'kyushu'
-                              ? '九州地方'
-                              : '未設定'}
-            </p>
+            <p>{student?.region}</p>
           </div>
 
           <div className="col-md-9">
@@ -75,15 +57,7 @@ export default async function Profile() {
             </div>
             <div className="mb-5">
               <h5>希望職種</h5>
-              <span className="badge bg-primary me-2">
-                {student?.desired_job == 'engineer'
-                  ? 'エンジニア'
-                  : student?.desired_job == 'designer'
-                    ? 'デザイナー'
-                    : student?.desired_job == 'sales'
-                      ? '営業'
-                      : 'マーケティング'}
-              </span>
+              <span className="badge bg-primary me-2">{student?.desired_job}</span>
             </div>
 
             <div className="mb-3">

@@ -56,35 +56,10 @@ export default async function Company({ params }: { params: { id: string } }) {
                 <div className="card-body d-flex justify-content-between align-items-center flex-wrap">
                   <div>
                     <h5 className="card-title mb-1">{intern.title}</h5>
-                    <p className="card-text mb-1">
-                      職種:
-                      {intern.job == 'engineer'
-                        ? 'エンジニア'
-                        : intern.job == 'designer'
-                          ? 'デザイナー'
-                          : intern.job == 'sales'
-                            ? '営業'
-                            : 'マーケティング'}
-                    </p>
+                    <p className="card-text mb-1">職種:{intern.job}</p>
                     <p className="card-text mb-1">
                       勤務地：
-                      {intern.location === 'hokkaido'
-                        ? '北海道'
-                        : intern.location === 'tohoku'
-                          ? '東北地方'
-                          : intern.location === 'kanto'
-                            ? '関東地方'
-                            : intern.location === 'chubu'
-                              ? '中部地方'
-                              : intern.location === 'kansai'
-                                ? '関西地方'
-                                : intern.location === 'chugoku'
-                                  ? '中国地方'
-                                  : intern.location === 'shikoku'
-                                    ? '四国地方'
-                                    : intern.location === 'kyushu'
-                                      ? '九州地方'
-                                      : '未設定'}
+                      {intern.location}
                     </p>
                     <p className="card-text text-muted mb-0">時給：{intern.salary}円</p>
                   </div>

@@ -157,14 +157,14 @@ export default function StudentProfileEditForm({
             {...register('region', { required: '住んでいる場所は必須です' })}
           >
             <option value="">選択してください</option>
-            <option value="hokkaido">北海道</option>
-            <option value="tohoku">東北地方</option>
-            <option value="kanto">関東地方</option>
-            <option value="chubu">中部地方</option>
-            <option value="kansai">関西地方</option>
-            <option value="chugoku">中国地方</option>
-            <option value="shikoku">四国地方</option>
-            <option value="kyushu">九州地方</option>
+            <option value="北海道">北海道</option>
+            <option value="東北地方">東北地方</option>
+            <option value="関東地方">関東地方</option>
+            <option value="中部地方">中部地方</option>
+            <option value="関西地方">関西地方</option>
+            <option value="中国地方">中国地方</option>
+            <option value="四国地方">四国地方</option>
+            <option value="九州地方">九州地方</option>
           </select>
         </div>
 
@@ -179,10 +179,10 @@ export default function StudentProfileEditForm({
             {...register('desiredJob', { required: '希望職種は必須です' })}
           >
             <option value="">選択してください</option>
-            <option value="engineer">エンジニア</option>
-            <option value="designer">デザイナー</option>
-            <option value="sales">営業</option>
-            <option value="marketing">マーケティング</option>
+            <option value="エンジニア">エンジニア</option>
+            <option value="デザイナー">デザイナー</option>
+            <option value="営業">営業</option>
+            <option value="マーケティング">マーケティング</option>
           </select>
         </div>
         <div className="mb-3">

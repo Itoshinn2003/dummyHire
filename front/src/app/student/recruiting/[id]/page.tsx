@@ -24,34 +24,10 @@ export default async function Recruiting({ params }: { params: { id: string } })
 
       <div className="row mb-4">
         <div className="col-md-4 mb-2">
-          <strong>勤務地：</strong>{' '}
-          {intern?.location === 'hokkaido'
-            ? '北海道'
-            : intern?.location === 'tohoku'
-              ? '東北地方'
-              : intern?.location === 'kanto'
-                ? '関東地方'
-                : intern?.location === 'chubu'
-                  ? '中部地方'
-                  : intern?.location === 'kansai'
-                    ? '関西地方'
-                    : intern?.location === 'chugoku'
-                      ? '中国地方'
-                      : intern?.location === 'shikoku'
-                        ? '四国地方'
-                        : intern?.location === 'kyushu'
-                          ? '九州地方'
-                          : '未設定'}
+          <strong>勤務地：</strong> {intern?.location}
         </div>
         <div className="col-md-4 mb-2">
-          <strong>職種：</strong>{' '}
-          {intern?.job == 'engineer'
-            ? 'エンジニア'
-            : intern?.job == 'designer'
-              ? 'デザイナー'
-              : intern?.job == 'sales'
-                ? '営業'
-                : 'マーケティング'}
+          <strong>職種：</strong> {intern?.job}
         </div>
         <div className="col-md-4 mb-2">
           <strong>時給：</strong> {intern?.salary}円
