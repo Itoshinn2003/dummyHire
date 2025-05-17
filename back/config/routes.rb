@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :api do
 
-    resources :students, only: [:create, :update] do
+    resources :students, only: [:index, :create, :update, :show] do
       collection do
         post :signin
         post :profile

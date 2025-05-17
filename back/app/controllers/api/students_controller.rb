@@ -1,4 +1,13 @@
 class Api::StudentsController < ApplicationController
+
+    def index
+        students = Student.ransack(params[:q]).result()
+
+        students = students.as_json(only: [:id, :user_name, :university_name, :department, :grade, :desired_job, :region])
+        render json: { students: students }
+    end
+
+
     def new
         @student = Student.new(user_name: params[:userName], university_name: params[:universityName], department: params[:department], password: params[:password], grade: params[:grade], desired_job: params[:desiredJob], user_id: params[:userId])
         if @student.save
@@ -34,5 +43,11 @@ class Api::StudentsController < ApplicationController
         student = Student.find(params[:id])
         student = student.as_json(only: [:user_name, :university_name, :department, :profile_text, :self_pr, :grade, :region, :desired_job, :github, :portfolio])
         render json: { student: student}
+    end
+
+    def show
+        student = Student.find(params[:id])
+        student = student.as_json(only: [:user_name, :university_name, :department, :desired_job, :grade, :profile_text, :self_pr, :github, :portfolio, :region])
+        render json: {student: student}, status: :ok
     end
 end

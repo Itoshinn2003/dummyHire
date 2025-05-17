@@ -63,14 +63,11 @@ export default function InternRecruiting({
               <div className="card shadow-sm">
                 <div className="card-body d-flex justify-content-between align-items-center flex-wrap">
                   <div>
-                    {/* 名前 */}
                     <h5 className="card-title mb-1">{likeuser.student.user_name}</h5>
-                    {/* 大学学部学年 */}
                     <p className="card-text mb-1">
                       {likeuser.student.university_name}/{likeuser.student.department}/
                       {likeuser.student.grade}年
                     </p>
-                    {/* 希望勤務地 */}
                     <p className="card-text mb-1">希望職種: {likeuser.student.desired_job}</p>
                     <p className="card-text text-muted mb-0">
                       住んでいる場所: {likeuser.student.region}

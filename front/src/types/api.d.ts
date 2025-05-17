@@ -62,3 +62,13 @@ type InternSearchApiResponse = {
     name: string;
   };
 };
+
+type StudentSearchApiResponse = {
+  id: number;
+  user_name: string;
+  university_name: string;
+  department: number;
+  grade: number;
+  desired_job: string;
+  region: string;
+};

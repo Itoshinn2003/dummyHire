@@ -1,5 +1,16 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+
+export const index = async (params: { q: StudentSearchParams }) => {
+  try {
+    const response = await axios.get(`http://localhost:3001/api/students`, { params });
+    const data = response.data.students;
+    return data as StudentSearchApiResponse[];
+  } catch (error: any) {
+    throw new Error(error.response.data.error);
+  }
+};
+
 export const create = async (params: studentParams) => {
   try {
     const response = await axios.post('http://localhost:3001/api/students', params);

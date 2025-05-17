@@ -1,57 +1,64 @@
-// 学生の個々のプロフィール見るページ
 import React from 'react';
-import Image from 'next/image';
-export default function StudentProfile() {
+export default async function StudentProfile({ params }: { params: { id: string } }) {
+  let studentId = params.id;
+  let student: null | StudentApiResponse = null;
+  try {
+    const response = await fetch(`http://api:3000/api/students/${studentId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    student = data.student;
+    console.log(student);
+  } catch (error) {
+    console.error('Request failed', error);
+  }
   return (
     <div className="container my-5" style={{ maxWidth: '700px' }}>
-      {/* ヘッダー */}
       <div className="text-center mb-4">
-        <h2>田中 花子</h2>
-        <p className="text-muted">東京大学 / 3年生 / 情報工学専攻</p>
+        <h2>{student?.user_name}</h2>
+        <p className="text-muted">
+          {student?.university_name}/ {student?.department}/ {student?.grade}年
+        </p>
       </div>
 
-      {/* 自己紹介 */}
-      <div className="mb-4">
+      <div className="mb-5">
         <h5>自己紹介</h5>
-        <p>
-          現在、大学で情報工学を学んでいます。ReactやNode.jsを用いたWebアプリ開発に興味があり、
-          将来的にはフロントエンドエンジニアとして活躍したいと考えています。
-        </p>
+        <p>{student?.profile_text}</p>
       </div>
-      <div className="mb-4">
-        <h5>インターンで経験したいこと</h5>
-        <p>
-          現在、大学で情報工学を学んでいます。ReactやNode.jsを用いたWebアプリ開発に興味があり、
-          将来的にはフロントエンドエンジニアとして活躍したいと考えています。
-        </p>
+      <div className="mb-5">
+        <h5>インターンで経験したいこと/自己PR</h5>
+        <p>{student?.self_pr || '自己PRがありません'}</p>
       </div>
 
-      {/* 希望職種・居住地 */}
       <div className="mb-4">
-        <h5>希望条件</h5>
         <ul className="list-unstyled">
           <li>
-            <strong>希望職種：</strong> フロントエンドエンジニア
+            <strong>希望職種：</strong> {student?.desired_job}
           </li>
           <li>
-            <strong>居住地：</strong> 東京都
+            <strong>居住地：</strong> {student?.region}
           </li>
         </ul>
       </div>
 
-      {/* ポートフォリオ */}
       <div className="mb-4">
-        <h5>ポートフォリオ</h5>
-        <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-          https://example.com
-        </a>
-        <h5>Githubアカウント</h5>
-        <a href="https://example.com" target="_blank" rel="noopener noreferrer">
-          https://example.com
-        </a>
+        <div className="mb-5">
+          <h5>ポートフォリオ</h5>
+          <a href={student?.portfolio} target="_blank" rel="noopener noreferrer">
+            {student?.portfolio || 'GitHubアカウント未登録'}
+          </a>
+        </div>
+        <div>
+          <h5>Githubアカウント</h5>
+          <a href={student?.github} target="_blank" rel="noopener noreferrer">
+            {student?.github || 'ポートフォリオ未登録'}
+          </a>
+        </div>
       </div>
 
-      {/* アクションボタン */}
       <div className="text-center">
         <button className="btn btn-primary">メッセージを送る</button>
       </div>

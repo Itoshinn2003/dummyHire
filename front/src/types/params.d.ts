@@ -49,3 +49,8 @@ type InternSearchParams = {
   job_eq: string;
   salary_gteq: number;
 };
+
+type StudentSearchParams = {
+  region_eq: string;
+  desired_job_eq: string;
+};

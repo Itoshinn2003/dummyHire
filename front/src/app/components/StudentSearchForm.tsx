@@ -1,13 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { index } from '@/api/intern';
-export default function constInternSearchForm(props: any) {
-  const [inerns, setInterns] = useState<InternSearchApiResponse[]>([]);
+import { index } from '@/api/student';
+export default function StudentSearchForm(props: any) {
+  const [students, setStudents] = useState<StudentSearchApiResponse[]>([]);
   const defaultValues = {
-    location_eq: '',
-    job_eq: '',
-    salary_gteq: 0,
+    region_eq: '',
+    desired_job_eq: '',
   };
   const {
     register,
@@ -16,7 +15,7 @@ export default function constInternSearchForm(props: any) {
   } = useForm({ defaultValues });
   const [error, setError] = useState('');
 
-  const onSubmit = async (data: InternSearchParams) => {
+  const onSubmit = async (data: StudentSearchParams) => {
     const searchParams = {
       q: data,
     };
@@ -30,15 +29,15 @@ export default function constInternSearchForm(props: any) {
 
   return (
     <form className="row g-3 mb-4" onSubmit={handleSubmit(onSubmit)}>
-      <div className="col-md-4">
-        <label htmlFor="location" className="form-label">
-          希望勤務場所
+      <div className="col-md-6">
+        <label htmlFor="region" className="form-label">
+          住んでいる場所
         </label>
-        <p className="text-danger">{errors.location_eq?.message}</p>
+        <p className="text-danger">{errors.region_eq?.message}</p>
         <select
           className="form-select"
-          id="location"
-          {...register('location_eq', { required: '希望勤務場所は必須です' })}
+          id="region"
+          {...register('region_eq', { required: '住んでいる場所は必須です' })}
         >
           <option value="">選択してください</option>
           <option value="北海道">北海道</option>
@@ -51,15 +50,15 @@ export default function constInternSearchForm(props: any) {
           <option value="九州地方">九州地方</option>
         </select>
       </div>
-      <div className="col-md-4">
+      <div className="col-md-6">
         <label htmlFor="desired-job" className="form-label">
           希望職種
         </label>
-        <p className="text-danger">{errors.job_eq?.message}</p>
+        <p className="text-danger">{errors.desired_job_eq?.message}</p>
         <select
           className="form-select"
           id="desired-job"
-          {...register('job_eq', { required: '希望職種は必須です' })}
+          {...register('desired_job_eq', { required: '希望職種は必須です' })}
         >
           <option value="">選択してください</option>
           <option value="エンジニア">エンジニア</option>
@@ -67,25 +66,6 @@ export default function constInternSearchForm(props: any) {
           <option value="営業">営業</option>
           <option value="マーケティング">マーケティング</option>
         </select>
-      </div>
-      <div className="col-md-4">
-        <label htmlFor="salary" className="form-label">
-          時給
-        </label>
-        <p className="text-danger">{errors.salary_gteq?.message}</p>
-        <input
-          type="text"
-          className="form-control"
-          id="salary"
-          {...register('salary_gteq', {
-            valueAsNumber: true,
-            min: {
-              value: 0,
-              message: '0以上の値を入力してください',
-            },
-          })}
-        />
-        円~
       </div>
       <div className="col-md-4 mx-auto">
         <button type="submit" className="btn btn-outline-primary w-100">
