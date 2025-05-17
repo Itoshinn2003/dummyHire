@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_12_092506) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_15_060648) do
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "profile_text"
@@ -38,6 +38,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_092506) do
     t.index ["company_id"], name: "index_interns_on_company_id"
   end
 
+  create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "intern_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["intern_id"], name: "index_likes_on_intern_id"
+    t.index ["student_id"], name: "index_likes_on_student_id"
+  end
+
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "user_name"
     t.string "university_name"
@@ -56,4 +65,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_12_092506) do
   end
 
   add_foreign_key "interns", "companies"
+  add_foreign_key "likes", "interns"
+  add_foreign_key "likes", "students"
 end

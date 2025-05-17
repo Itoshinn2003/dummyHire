@@ -24,9 +24,17 @@ class Api::InternsController < ApplicationController
     end
 
     def show
-
         intern = Intern.find(params[:id])
-        intern = intern.as_json(only: [:title, :job, :intern_text, :terms, :selection, :salary, :location, :compamy_id])
+        intern = intern.as_json(only: [:title, :job, :intern_text, :terms, :selection, :salary, :location, :compamy_id],
+        include: {
+            likes: {
+              only: [:student_id],
+              include: {
+                student: {
+                  only: [:user_name, :university_name, :department, :grade, :desired_job, :region]
+                }
+              }
+            }})
         render json: {intern: intern}, status: :ok
     end
 

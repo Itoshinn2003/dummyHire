@@ -39,6 +39,17 @@ type InternApiResponse = {
   selection: string;
   salary: number;
   location: string;
+  likes: {
+    student_id: string;
+    student: {
+      user_name: string;
+      university_name: string;
+      department: string;
+      grade: number;
+      desired_job: string;
+      region: string;
+    };
+  }[];
 };
 
 type InternSearchApiResponse = {

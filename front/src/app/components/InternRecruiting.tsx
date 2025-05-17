@@ -1,9 +1,9 @@
 'use client';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { destroy } from '@/api/intern';
-import { checkIsOnDemandRevalidate } from 'next/dist/server/api-utils';
 export default function InternRecruiting({
   intern,
   internId,
@@ -53,6 +53,40 @@ export default function InternRecruiting({
       <div className="mb-4">
         <h5>選考フロー</h5>
         <p>{intern?.selection}</p>
+      </div>
+
+      <div className="mb-5">
+        <h5>応募している学生一覧</h5>
+        <div className="row g-4">
+          {intern?.likes.map((likeuser, index) => (
+            <div className="col-12" key={index}>
+              <div className="card shadow-sm">
+                <div className="card-body d-flex justify-content-between align-items-center flex-wrap">
+                  <div>
+                    {/* 名前 */}
+                    <h5 className="card-title mb-1">{likeuser.student.user_name}</h5>
+                    {/* 大学学部学年 */}
+                    <p className="card-text mb-1">
+                      {likeuser.student.university_name}/{likeuser.student.department}/
+                      {likeuser.student.grade}年
+                    </p>
+                    {/* 希望勤務地 */}
+                    <p className="card-text mb-1">希望職種: {likeuser.student.desired_job}</p>
+                    <p className="card-text text-muted mb-0">
+                      住んでいる場所: {likeuser.student.region}
+                    </p>
+                  </div>
+                  <Link
+                    href={`/company/student/${likeuser.student_id}`}
+                    className="btn btn-primary mt-3 mt-md-0"
+                  >
+                    詳細を見る
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

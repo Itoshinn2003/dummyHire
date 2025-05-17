@@ -6,11 +6,6 @@ export default function StudentProfile() {
     <div className="container my-5" style={{ maxWidth: '700px' }}>
       {/* ヘッダー */}
       <div className="text-center mb-4">
-        <Image
-          src="https://via.placeholder.com/100"
-          alt="プロフィール画像"
-          className="rounded-circle mb-3"
-        />
         <h2>田中 花子</h2>
         <p className="text-muted">東京大学 / 3年生 / 情報工学専攻</p>
       </div>

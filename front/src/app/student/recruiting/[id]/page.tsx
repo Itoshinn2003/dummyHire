@@ -1,9 +1,12 @@
 import { cookies } from 'next/headers';
+import InternLike from '@/app/components/InternLike';
 export default async function Recruiting({ params }: { params: { id: string } }) {
   let intern: null | InternApiResponse = null;
+  let isLiked: boolean = false;
   const internId = params.id;
   const cookieStore = await cookies();
-  const companyId = cookieStore.get('company_id')?.value;
+  const studentId = cookieStore.get('student_id')?.value;
+
   try {
     const response = await fetch(`http://api:3000/api/interns/${internId}`, {
       method: 'GET',
@@ -13,11 +16,16 @@ export default async function Recruiting({ params }: { params: { id: string } })
     });
     const data = await response.json();
     intern = data.intern;
+    if (intern?.likes.length != 0 && studentId != undefined && intern != undefined) {
+      isLiked = intern.likes.some((like) => like.student_id == studentId);
+    }
   } catch (error) {
     console.error('Request failed', error);
   }
+
   return (
     <div className="container my-5">
+      <InternLike isLiked={isLiked} internId={internId} studentId={studentId}></InternLike>
       <div className="mb-4">
         <h2>{intern?.title}</h2>
       </div>

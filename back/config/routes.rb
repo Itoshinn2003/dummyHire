@@ -24,6 +24,12 @@ Rails.application.routes.draw do
   
     resources :interns, only: [:index, :show, :create, :destroy] do
     end
+
+    resources :likes, only: [] do
+      collection do
+        get :change_liked
+      end
+    end
   end
 
   # Defines the root path route ("/")

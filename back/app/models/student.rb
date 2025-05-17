@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
-
+    has_many :likes
+    
     validates :user_name, presence: true
     validates :university_name, presence: true
     validates :department, presence: true
