@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import logo from '@/images/hope.jpeg';
 import Link from 'next/link';
 import { cookies } from 'next/headers';
 export default async function Company() {
@@ -29,7 +27,6 @@ export default async function Company() {
         </div>
 
         <div className="text-center mb-5">
-          <Image src={logo} alt="企業ロゴ" className="rounded-circle mb-3" />
           <h2>{company?.name}</h2>
           <p className="text-muted">{company?.location}</p>
         </div>

@@ -1,3 +1,8 @@
+'use client';
+import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,14 +29,24 @@ export default function RootLayout({
           <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  ログイン
-                </a>
+                <Link href={'/company/students'} className="nav-link">
+                  学生検索
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  企業向け
-                </a>
+                <Link href={'/company/profile'} className="nav-link">
+                  プロフィール
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href={'/company/profile'} className="nav-link">
+                  メッセージ
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href={'/company/recruit'} className="nav-link">
+                  募集作成
+                </Link>
               </li>
             </ul>
           </div>

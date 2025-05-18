@@ -1,4 +1,4 @@
-export default function MessageListToCompany() {
+export default function MessageToCompany() {
   return (
     <div className="container my-5">
       <h2 className="mb-4">メッセージ一覧</h2>

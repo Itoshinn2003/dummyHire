@@ -1,5 +1,4 @@
-// 学生とのメッセージする場所
-export default function MessageToStudent() {
+export default function MessageListToStudent() {
   return (
     <div className="container my-5">
       <h2 className="mb-4">メッセージ一覧</h2>

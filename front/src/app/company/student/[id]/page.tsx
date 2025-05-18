@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 export default async function StudentProfile({ params }: { params: { id: string } }) {
   let studentId = params.id;
   let student: null | StudentApiResponse = null;
@@ -60,7 +61,9 @@ export default async function StudentProfile({ params }: { params: { id: string 
       </div>
 
       <div className="text-center">
-        <button className="btn btn-primary">メッセージを送る</button>
+        <Link href={`/company/message/${studentId}`} className="btn btn-primary">
+          メッセージを送る
+        </Link>
       </div>
     </div>
   );
