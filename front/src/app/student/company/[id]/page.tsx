@@ -1,5 +1,13 @@
 import Link from 'next/link';
+import { cookies } from 'next/headers';
+import { useRouter } from 'next/navigation';
 export default async function Company({ params }: { params: { id: string } }) {
+  const router = useRouter();
+  const cookieStore = await cookies();
+  const studentId = cookieStore.get('student_id')?.value;
+  if (!studentId) {
+    router.push('/signin/student');
+  }
   let companyId = params.id;
   let company: null | CompanyApiResponse = null;
   try {

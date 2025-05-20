@@ -1,13 +1,7 @@
 'use client';
 import { useState } from 'react';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 
-export default function MessageListToStudent() {
-  let router = useRouter();
-  if (!Cookies.get('company_id')) {
-    router.push('/signin/company');
-  }
+export default function MessageToStudentForm() {
   const [messages, setMessages] = useState([
     { id: 1, user: 'me', content: 'こんにちは！' },
     { id: 2, user: 'other', content: 'こんにちは、よろしくお願いします！' },
@@ -25,7 +19,6 @@ export default function MessageListToStudent() {
     <div className="container py-4" style={{ maxWidth: '600px' }}>
       <h5 className="mb-3">🗨️ 相手の名前</h5>
 
-      {/* メッセージ一覧 */}
       <div
         className="border rounded p-3 mb-3 bg-light"
         style={{ height: '600px', overflowY: 'scroll' }}
@@ -39,21 +32,6 @@ export default function MessageListToStudent() {
             </div>
           </div>
         ))}
-      </div>
-
-      {/* 入力フォーム */}
-      <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="メッセージを入力..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-        />
-        <button className="btn btn-primary" onClick={sendMessage}>
-          送信
-        </button>
       </div>
     </div>
   );

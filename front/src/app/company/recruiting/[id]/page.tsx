@@ -1,11 +1,16 @@
 import InternRecruiting from '@/app/components/InternRecruiting';
 export const dynamic = 'force-dynamic';
 import { cookies } from 'next/headers';
+import { useRouter } from 'next/navigation';
 export default async function Recruiting({ params }: { params: { id: string } }) {
+  let router = useRouter();
   let intern: null | InternApiResponse = null;
   const internId = params.id;
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
+  if (!companyId) {
+    router.push('signin/company');
+  }
   try {
     const response = await fetch(`http://api:3000/api/interns/${internId}`, {
       method: 'GET',

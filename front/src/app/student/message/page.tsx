@@ -1,4 +1,12 @@
-export default function MessageListToCompany() {
+import { useRouter } from 'next/navigation';
+import { cookies } from 'next/headers';
+export default async function MessageListToCompany() {
+  const router = useRouter();
+  const cookieStore = await cookies();
+  const studentId = cookieStore.get('student_id')?.value;
+  if (!studentId) {
+    router.push('/signin/student');
+  }
   return (
     <div className="container my-5">
       <h2 className="mb-4">メッセージ一覧</h2>

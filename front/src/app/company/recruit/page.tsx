@@ -6,7 +6,10 @@ import { useForm } from 'react-hook-form';
 import { create } from '@/api/intern';
 import { useRouter } from 'next/navigation';
 export default function CreateIntern() {
-  const router = useRouter();
+  let router = useRouter();
+  if (!Cookies.get('company_id')) {
+    router.push('/signin/company');
+  }
   const [error, setError] = useState<string>('');
   const defaultValues = {
     companyId: Cookies.get('company_id'),

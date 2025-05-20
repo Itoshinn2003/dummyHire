@@ -54,3 +54,10 @@ type StudentSearchParams = {
   region_eq: string;
   desired_job_eq: string;
 };
+
+type messageFormParams = {
+  content: string;
+  student_id: string;
+  company_id: string | undefined;
+  type: string;
+};

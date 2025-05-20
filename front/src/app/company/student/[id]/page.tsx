@@ -1,8 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { cookies } from 'next/headers';
 export default async function StudentProfile({ params }: { params: { id: string } }) {
+  let router = useRouter();
   let studentId = params.id;
   let student: null | StudentApiResponse = null;
+  const cookieStore = await cookies();
+  const companyId = cookieStore.get('company_id')?.value;
+  if (!companyId) {
+    router.push('signin/company');
+  }
   try {
     const response = await fetch(`http://api:3000/api/students/${studentId}`, {
       method: 'GET',

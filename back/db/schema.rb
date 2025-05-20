@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_05_15_060648) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_18_080145) do
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "profile_text"
@@ -45,6 +45,18 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_15_060648) do
     t.datetime "updated_at", null: false
     t.index ["intern_id"], name: "index_likes_on_intern_id"
     t.index ["student_id"], name: "index_likes_on_student_id"
+  end
+
+  create_table "messages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "sender_type", null: false
+    t.bigint "sender_id", null: false
+    t.string "receiver_type", null: false
+    t.bigint "receiver_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_type", "receiver_id"], name: "index_messages_on_receiver"
+    t.index ["sender_type", "sender_id"], name: "index_messages_on_sender"
   end
 
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

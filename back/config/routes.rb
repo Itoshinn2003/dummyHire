@@ -14,6 +14,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :messages, only: [] do
+      collection do
+        get :chatroom
+      end
+    end
+
 
     resources :companies, only: [:show, :update] do
       collection do

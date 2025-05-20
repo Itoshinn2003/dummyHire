@@ -1,9 +1,14 @@
 'use client';
 import React, { useState } from 'react';
-
+import Cookies from 'js-cookie';
 import StudentSearchForm from '@/app/components/StudentSearchForm';
 import StudentSearchResult from '@/app/components/StudentSearchResult';
+import { useRouter } from 'next/navigation';
 export default function Students() {
+  let router = useRouter();
+  if (!Cookies.get('company_id')) {
+    router.push('/signin/company');
+  }
   const [students, setStudents] = useState<StudentSearchApiResponse[] | null>();
   const handleValueChange = (students: StudentSearchApiResponse[]) => {
     setStudents(students);

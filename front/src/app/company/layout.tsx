@@ -39,7 +39,7 @@ export default function RootLayout({
                 </Link>
               </li>
               <li className="nav-item">
-                <Link href={'/company/profile'} className="nav-link">
+                <Link href={'/company/message'} className="nav-link">
                   メッセージ
                 </Link>
               </li>

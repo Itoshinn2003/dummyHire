@@ -1,24 +1,58 @@
-export default function MessageToCompany() {
-  return (
-    <div className="container my-5">
-      <h2 className="mb-4">メッセージ一覧</h2>
+'use client';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+export default function MessageListToCompany() {
+  const router = useRouter();
+  if (!Cookies.get('student_id')) {
+    router.push('/signin/student');
+  }
+  const [messages, setMessages] = useState([
+    { id: 1, user: 'me', content: 'こんにちは！' },
+    { id: 2, user: 'other', content: 'こんにちは、よろしくお願いします！' },
+    { id: 3, user: 'me', content: 'こちらこそ！' },
+  ]);
+  const [input, setInput] = useState('');
 
-      {Array.from({ length: 5 }).map((_, index) => (
-        <div className="card mb-3 shadow-sm" key={index}>
-          <div className="card-body d-flex justify-content-between align-items-center">
-            <div>
-              <h5 className="card-title mb-1">DummyCompany {index + 1}</h5>
-              <p className="card-text mb-1 text-muted">
-                企業からのメッセージ内容がここに表示されます（ダミー）
-              </p>
-              <small className="text-muted">2025/04/24</small>
+  const sendMessage = () => {
+    if (input.trim() === '') return;
+    setMessages([...messages, { id: Date.now(), user: 'me', content: input }]);
+    setInput('');
+  };
+
+  return (
+    <div className="container py-4" style={{ maxWidth: '600px' }}>
+      <h5 className="mb-3">🗨️ 相手の名前</h5>
+
+      <div
+        className="border rounded p-3 mb-3 bg-light"
+        style={{ height: '600px', overflowY: 'scroll' }}
+      >
+        {messages.map((msg) => (
+          <div key={msg.id} className={`mb-2 ${msg.user === 'me' ? 'text-end' : 'text-start'}`}>
+            <div
+              className={`d-inline-block px-3 py-2 rounded ${msg.user === 'me' ? 'bg-primary text-white' : 'bg-white border'}`}
+            >
+              {msg.content}
             </div>
-            <a href="#" className="btn btn-outline-primary">
-              メッセージを見る
-            </a>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* 入力フォーム */}
+      <div className="input-group">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="メッセージを入力..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+        />
+        <button className="btn btn-primary" onClick={sendMessage}>
+          送信
+        </button>
+      </div>
     </div>
   );
 }
