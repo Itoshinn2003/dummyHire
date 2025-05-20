@@ -1,11 +1,10 @@
 'use client';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 export default function MessageListToCompany() {
-  const router = useRouter();
   if (!Cookies.get('student_id')) {
-    router.push('/signin/student');
+    redirect('/signin/student');
   }
   const [messages, setMessages] = useState([
     { id: 1, user: 'me', content: 'こんにちは！' },

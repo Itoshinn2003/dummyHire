@@ -2,14 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/images/hope.jpeg';
 import { cookies } from 'next/headers';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 export default async function Profile() {
-  const router = useRouter();
   let student: null | StudentApiResponse = null;
   const cookieStore = await cookies();
   const studentId = cookieStore.get('student_id')?.value;
   if (!studentId) {
-    router.push('/signin/student');
+    redirect('/signin/student');
   }
   try {
     const response = await fetch('http://api:3000/api/students/profile', {

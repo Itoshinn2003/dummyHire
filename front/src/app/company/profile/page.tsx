@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import { cookies } from 'next/headers';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 export default async function Company() {
-  let router = useRouter();
   let company: null | CompanyApiResponse = null;
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
   if (!companyId) {
-    router.push('signin/company');
+    redirect('signin/company');
   }
   try {
     const response = await fetch('http://api:3000/api/companies/profile', {

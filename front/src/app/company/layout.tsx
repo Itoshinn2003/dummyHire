@@ -1,7 +1,5 @@
 'use client';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
 
 export default function RootLayout({
   children,

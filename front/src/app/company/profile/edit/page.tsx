@@ -1,13 +1,12 @@
 import { cookies } from 'next/headers';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import CompanyProfileEditForm from '@/app/components/CompanyProfileEditForm';
 export default async function companyProgileEdit() {
-  let router = useRouter();
   let company: CompanyApiResponse | null = null;
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
   if (!companyId) {
-    router.push('signin/company');
+    redirect('signin/company');
   }
   try {
     const response = await fetch('http://api:3000/api/companies/profile', {

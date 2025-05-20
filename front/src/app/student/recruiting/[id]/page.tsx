@@ -1,15 +1,14 @@
 import { cookies } from 'next/headers';
 import InternLike from '@/app/components/InternLike';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
 export default async function Recruiting({ params }: { params: { id: string } }) {
   let intern: null | InternApiResponse = null;
   let isLiked: boolean = false;
-  const router = useRouter();
   const internId = params.id;
   const cookieStore = await cookies();
   const studentId = cookieStore.get('student_id')?.value;
   if (!studentId) {
-    router.push('/signin/student');
+    redirect('/signin/student');
   }
   try {
     const response = await fetch(`http://api:3000/api/interns/${internId}`, {
