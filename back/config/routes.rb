@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create] do
       collection do
         post :chatroom
+        post :list
       end
     end
 

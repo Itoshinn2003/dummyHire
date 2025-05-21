@@ -1,28 +1,41 @@
-import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
+
 export default async function MessageListToCompany() {
+  let companies: null | MessageListToCompanyApiResponse[] = null;
   const cookieStore = await cookies();
   const studentId = cookieStore.get('student_id')?.value;
   if (!studentId) {
     redirect('/signin/student');
   }
+  try {
+    const response = await fetch('http://api:3000/api/messages/list', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ type: 'Student', student_id: studentId }),
+    });
+    const data = await response.json();
+    companies = data.companies;
+  } catch (error) {
+    console.error('Request failed', error);
+  }
+
   return (
     <div className="container my-5">
       <h2 className="mb-4">メッセージ一覧</h2>
 
-      {Array.from({ length: 5 }).map((_, index) => (
+      {companies?.map((company, index) => (
         <div className="card mb-3 shadow-sm" key={index}>
           <div className="card-body d-flex justify-content-between align-items-center">
             <div>
-              <h5 className="card-title mb-1">DummyCompany {index + 1}</h5>
-              <p className="card-text mb-1 text-muted">
-                企業からのメッセージ内容がここに表示されます（ダミー）
-              </p>
-              <small className="text-muted">2025/04/24</small>
+              <h5 className="card-title mb-1">{company.name}</h5>
             </div>
-            <a href="#" className="btn btn-outline-primary">
-              メッセージを見る
-            </a>
+            <Link href={`/student/message/${company.id}`} className="btn btn-outline-primary">
+              チャットを開く
+            </Link>
           </div>
         </div>
       ))}

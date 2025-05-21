@@ -1,60 +1,45 @@
-'use client';
-import { useState } from 'react';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
-export default function MessageListToStudent() {
-  let router = useRouter();
-  if (!Cookies.get('company_id')) {
-    router.push('/signin/company');
+export default async function MessageListToStudent() {
+  let students: null | MessageListToStudentApiResponse[] = null;
+  const cookieStore = await cookies();
+  const companyId = cookieStore.get('company_id')?.value;
+  if (!companyId) {
+    redirect('/signin/company');
   }
-  const [messages, setMessages] = useState([
-    { id: 1, user: 'me', content: 'こんにちは！' },
-    { id: 2, user: 'other', content: 'こんにちは、よろしくお願いします！' },
-    { id: 3, user: 'me', content: 'こちらこそ！' },
-  ]);
-  const [input, setInput] = useState('');
-
-  const sendMessage = () => {
-    if (input.trim() === '') return;
-    setMessages([...messages, { id: Date.now(), user: 'me', content: input }]);
-    setInput('');
-  };
+  try {
+    const response = await fetch('http://api:3000/api/messages/list', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ type: 'Company', company_id: companyId }),
+    });
+    const data = await response.json();
+    students = data.students;
+    console.log(students);
+  } catch (error) {
+    console.error('Request failed', error);
+  }
 
   return (
-    <div className="container py-4" style={{ maxWidth: '600px' }}>
-      <h5 className="mb-3">🗨️ 相手の名前</h5>
+    <div className="container my-5">
+      <h2 className="mb-4">メッセージ一覧</h2>
 
-      {/* メッセージ一覧 */}
-      <div
-        className="border rounded p-3 mb-3 bg-light"
-        style={{ height: '600px', overflowY: 'scroll' }}
-      >
-        {messages.map((msg) => (
-          <div key={msg.id} className={`mb-2 ${msg.user === 'me' ? 'text-end' : 'text-start'}`}>
-            <div
-              className={`d-inline-block px-3 py-2 rounded ${msg.user === 'me' ? 'bg-primary text-white' : 'bg-white border'}`}
-            >
-              {msg.content}
+      {students?.map((student, index) => (
+        <div className="card mb-3 shadow-sm" key={index}>
+          <div className="card-body d-flex justify-content-between align-items-center">
+            <div>
+              <h5 className="card-title mb-1">{student.user_name}</h5>
             </div>
+            <Link href={`/company/message/${student.id}`} className="btn btn-outline-primary">
+              チャットを開く
+            </Link>
           </div>
-        ))}
-      </div>
-
-      {/* 入力フォーム */}
-      <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="メッセージを入力..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-        />
-        <button className="btn btn-primary" onClick={sendMessage}>
-          送信
-        </button>
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

@@ -81,3 +81,12 @@ type MessageApiResponse = {
   }[];
   receiver_name: string;
 };
+
+type MessageListToStudentApiResponse = {
+  id: string;
+  user_name: string;
+};
+type MessageListToCompanyApiResponse = {
+  id: string;
+  name: string;
+};
