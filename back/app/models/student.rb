@@ -1,7 +1,7 @@
 class Student < ApplicationRecord
     has_many :likes
     has_many :sent_messages, as: :sender, class_name: "Message"
-    has_many :received_messages, as: :receiver, class_name: "Message"　
+    has_many :received_messages, as: :receiver, class_name: "Message"
     
     
     validates :user_name, presence: true

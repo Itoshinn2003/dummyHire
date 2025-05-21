@@ -72,3 +72,12 @@ type StudentSearchApiResponse = {
   desired_job: string;
   region: string;
 };
+
+type MessageApiResponse = {
+  messages: {
+    content: string;
+    sender_type: string;
+    created_at: string;
+  }[];
+  receiver_name: string;
+};

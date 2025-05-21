@@ -8,7 +8,7 @@ export default async function StudentProfile({ params }: { params: { id: string 
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
   if (!companyId) {
-    redirect('signin/company');
+    redirect('/signin/company');
   }
   try {
     const response = await fetch(`http://api:3000/api/students/${studentId}`, {

@@ -1,5 +1,20 @@
 class Api::MessagesController < ApplicationController
 
+    def create
+        if (params[:type] == 'Company')
+            message = Message.new(content: params[:content], sender_id: params[:company_id], receiver_id: params[:student_id], sender_type: 'Company', receiver_type: 'Student')
+        elsif (params[:type] == 'Student')
+            message = Message.new(content: params[:content], sender_id: params[:student_id], receiver_id: params[:company_id], sender_type: 'Student', receiver_type: 'Company')
+        end
+
+
+        if message.save
+            render json: { message: "success" }, status: :created
+        else 
+            render json: { error: message.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+
     def chatroom
         if params[:type] == "Company"
             messages = Message.where(
@@ -14,6 +29,10 @@ class Api::MessagesController < ApplicationController
         ).order(:created_at)
             receiver_name = Company.find(params[:company_id]).name
         end
+
+        messages = messages.as_json(
+            only: [:content, :sender_type ,:created_at]
+        )
         render json: {messages: messages, receiver_name: receiver_name}
     end
 end

@@ -13,6 +13,7 @@ export default function MessageFormToStudent(props: {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({ defaultValues });
   const [error, setError] = useState('');
@@ -25,14 +26,15 @@ export default function MessageFormToStudent(props: {
       type: 'Company',
     };
     try {
-      let data = await create();
+      let responseData = await create(data);
+      reset();
     } catch (err: any) {
       setError(err.message);
     }
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="mb-3">
+    <form onSubmit={handleSubmit(onSubmit)} className="container" style={{ maxWidth: '600px' }}>
+      <div className="mb-3 d-flex align-items-start gap-2">
         <input
           type="text"
           className="form-control"
@@ -41,11 +43,10 @@ export default function MessageFormToStudent(props: {
             required: '',
           })}
         />
+        <button type="submit" className="btn btn-primary">
+          送信
+        </button>
       </div>
-
-      <button type="submit" className="btn btn-primary">
-        送信
-      </button>
     </form>
   );
 }

@@ -7,24 +7,30 @@ export default async function MessageToStudent({ params }: { params: { id: strin
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
   const studentId = params.id;
+  let messageData: MessageApiResponse | null = null;
   if (!companyId) {
-    redirect('signin/company');
+    redirect('/signin/company');
   }
   try {
     const response = await fetch('http://api:3000/api//messages/chatroom', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ type: 'Company', company_id: companyId, student_id: studentId }),
     });
-    const data = await response.json();
+    messageData = await response.json();
+    console.log(messageData?.messages);
   } catch (error) {
     console.error('Request failed', error);
   }
   return (
     <>
-      <ChatRoomToStudentForm></ChatRoomToStudentForm>
+      <ChatRoomToStudentForm
+        company_id={companyId}
+        student_id={studentId}
+        messageData={messageData}
+      ></ChatRoomToStudentForm>
       <MessageFormToStudent company_id={companyId} student_id={studentId}></MessageFormToStudent>
     </>
   );

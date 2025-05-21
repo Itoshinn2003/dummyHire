@@ -6,7 +6,7 @@ export default async function Company() {
   const cookieStore = await cookies();
   const companyId = cookieStore.get('company_id')?.value;
   if (!companyId) {
-    redirect('signin/company');
+    redirect('/signin/company');
   }
   try {
     const response = await fetch('http://api:3000/api/companies/profile', {
