@@ -1,11 +1,14 @@
 'use client';
-import { useState } from 'react';
-
-export default function MessageToStudentForm(props: {
+import { useRouter } from 'next/navigation';
+export default function MessageToCompanyForm(props: {
   student_id: string;
   company_id: string | undefined;
   messageData: MessageApiResponse | null;
 }) {
+  const router = useRouter();
+  if (!props.messageData?.receiver_name) {
+    router.back();
+  }
   return (
     <div className="container py-4" style={{ maxWidth: '600px' }}>
       <h5 className="mb-3">{props.messageData?.receiver_name}</h5>
