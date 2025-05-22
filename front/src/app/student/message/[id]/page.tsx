@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 
 export default async function MessageToCompany({ params }: { params: { id: string } }) {
   const cookieStore = await cookies();
-  const studentId = cookieStore.get('student')?.value;
+  const studentId = cookieStore.get('student_id')?.value;
   const companyId = params.id;
   let messageData: MessageApiResponse | null = null;
   if (!studentId) {

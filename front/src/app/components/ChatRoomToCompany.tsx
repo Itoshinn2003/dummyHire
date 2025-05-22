@@ -17,7 +17,7 @@ export default function MessageToCompanyForm(props: {
         style={{ height: '600px', overflowY: 'scroll' }}
       >
         {props.messageData?.messages.map((message, index) => (
-          <div className={`${message.sender_type === 'Company' ? 'text-end' : 'text-start'}`}>
+          <div className={`${message.sender_type === 'Student' ? 'text-end' : 'text-start'}`}>
             <div key={index} className={'d-inline-block p-2 rounded bg-secondary text-white mb-1'}>
               {message.content}
             </div>

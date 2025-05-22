@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { create } from '@/api/message';
+import { useRouter } from 'next/navigation';
 
 export default function MessageFormToCompany(props: {
   student_id: string;
@@ -17,7 +18,7 @@ export default function MessageFormToCompany(props: {
     formState: { errors },
   } = useForm({ defaultValues });
   const [error, setError] = useState('');
-
+  const router = useRouter();
   const onSubmit = async (message: { content: string }) => {
     let data = {
       content: message.content,
@@ -26,8 +27,9 @@ export default function MessageFormToCompany(props: {
       type: 'Student',
     };
     try {
-      let responseData = await create(data);
+      await create(data);
       reset();
+      router.refresh();
     } catch (err: any) {
       setError(err.message);
     }

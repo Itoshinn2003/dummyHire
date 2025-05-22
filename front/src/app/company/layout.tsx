@@ -14,7 +14,7 @@ export default function RootLayout({
   }
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             DummyHire

@@ -48,10 +48,10 @@ class Api::MessagesController < ApplicationController
         else
             companies1 = Message.where(receiver_type: 'Student', receiver_id: params[:student_id]).pluck(:sender_id)
             companies2 = Message.where(sender_type: 'Student', sender_id: params[:student_id]).pluck(:receiver_id)
-            
+
             companies_id = (companies1 + companies2).uniq
             companies = Company.where(id: companies_id)
-            companies = companiess.as_json(only: [:id, :name])
+            companies = companies.as_json(only: [:id, :name])
             render json: { companies: companies }
 
         end
