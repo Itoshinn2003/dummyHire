@@ -1,4 +1,5 @@
 import style from '../styles/styles.module.css';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -9,8 +10,16 @@ export default function Home() {
             <h1 className="m-0">DummyHire</h1>
           </div>
           <div className="d-flex">
-            <button className="btn btn-outline-light mx-2">ログイン</button>
-            <button className="btn btn-outline-light">企業向け</button>
+            <button className="btn btn-outline-light mx-2">
+              <Link href={'/signin/student'} className="nav-link">
+                学生ログイン
+              </Link>
+            </button>
+            <button className="btn btn-outline-light">
+              <Link href={'/signin/company'} className="nav-link">
+                企業ログイン
+              </Link>
+            </button>
           </div>
         </div>
       </header>
@@ -18,7 +27,9 @@ export default function Home() {
         className={`container-fluid text-center ${style.mainBackground} min-vh-100 d-flex flex-column justify-content-center w-100`}
       >
         <button className="btn btn-light mx-auto w-25 px-4 py-2 border border-dark">
-          新規登録
+          <Link href={'/signup/student'} className="nav-link">
+            学生新規登録
+          </Link>
         </button>
       </main>
     </>
