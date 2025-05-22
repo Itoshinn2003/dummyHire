@@ -3,21 +3,21 @@ services:
   db:
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: password 
+      MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: server_development
     ports:
-    - 3306:3306
+      - 3306:3306
     # command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql-data:/var/lib/mysql
-  api: 
+  api:
     build: ./back
     command: bash -c "rm -f tmp/pids/server.pid && bundle install  && foreman start -f procfile.dev"
     user: root
     volumes:
       - ./back:/back
     ports:
-      - "3001:3000"
+      - '3001:3000'
     depends_on:
       - db
     environment:
@@ -32,9 +32,7 @@ services:
     volumes:
       - ./front:/nextjs
     ports:
-      - "3000:3000"
-
+      - '3000:3000'
 volumes:
   mysql-data:
     driver: local
-    
